@@ -1,0 +1,4 @@
+[python]
+bears = PEP8Bear,PyLintBear,PyUnusedCodeBear,PyDocStyleBear,PyImportSortBear
+files = **/*.py
+ignore = venv/**
