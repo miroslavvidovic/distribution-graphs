@@ -26,16 +26,16 @@ def cli():
 
 
 @click.command()
-@click.argument('file', type=click.Path(exists=True))
-def word_frequency(file):
+@click.argument('path', type=click.Path(exists=True))
+def word_frequency(path):
     """
     Draw a word frequency graph from a file.
 
     Args:
-        file (str): path to a file
+        path (str): path to a file
     """
-    print("Word frequency for:%s \n\n" % file)
-    cat = subprocess.Popen(['cat', file], stdout=PIPE)
+    print("Word frequency for:%s \n\n" % path)
+    cat = subprocess.Popen(['cat', path], stdout=PIPE)
     xargs = subprocess.Popen(['xargs', '-0'], stdin=cat.stdout, stdout=PIPE)
     cat.stdout.close()
     distribution = subprocess.Popen(['distribution', '--tokenize=word',
@@ -46,16 +46,16 @@ def word_frequency(file):
 
 
 @click.command()
-@click.argument('directory', type=click.Path(exists=True))
-def space_usage(directory):
+@click.argument('path', type=click.Path(exists=True))
+def space_usage(path):
     """
     Draw a space usage graph for a directory.
 
     Args:
-        directory (str): path to a system directory
+        path (str): path to a system directory
     """
-    print("Space usage for:%s \n\n" % directory)
-    du_space = subprocess.Popen(['du', '--max-depth=1', '--all', directory],
+    print("Space usage for:%s \n\n" % path)
+    du_space = subprocess.Popen(['du', '--max-depth=1', '--all', path],
                                 stdout=PIPE, stderr=subprocess.DEVNULL)
     # sed removs the last line (the total line)
     sed = subprocess.Popen(['sed', '$d'], stdin=du_space.stdout, stdout=PIPE)
@@ -71,7 +71,7 @@ def space_usage(directory):
 @click.argument('path', type=click.Path(exists=True))
 def commits(path):
     """
-    Draw a number of commits graph by author for a git path.
+    Draw a number of commits graph by author for a git repository.
 
     Args:
         path (str): path to a git repository

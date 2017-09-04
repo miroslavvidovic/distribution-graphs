@@ -1,4 +1,6 @@
 # distribution-graphs
+
+## Synopsis
 Wrapper for creating ASCII graphical histograms in the terminal with https://github.com/philovivero/distribution
 
 ## Requirements
@@ -16,3 +18,7 @@ And this is the "wrapped" version:
 ```python
     dgraph.py space_usage ~/Downloads
 ```
+
+## License
+
+MIT
